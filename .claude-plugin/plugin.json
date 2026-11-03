@@ -1,0 +1,13 @@
+{
+  "name": "app-build-workflow",
+  "description": "Build apps from zero in Claude Code with a staged workflow that maximizes ultracode multi-agent workflows and per-stage effort levels, and auto-invokes companion skills for security, minimal backend code and frontend design.",
+  "version": "1.0.0",
+  "author": {
+    "name": "mochalvi"
+  },
+  "homepage": "https://github.com/mochalvi/app-build-workflow",
+  "repository": "https://github.com/mochalvi/app-build-workflow",
+  "license": "MIT",
+  "keywords": ["workflow", "ultracode", "effort", "app-builder", "multi-agent"],
+  "skills": "./skills/"
+}

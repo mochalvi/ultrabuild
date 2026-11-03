@@ -1,0 +1,15 @@
+{
+  "name": "app-build-workflow",
+  "description": "Staged Claude Code workflow for building apps from zero with ultracode multi-agent workflows and per-stage effort levels.",
+  "owner": {
+    "name": "mochalvi"
+  },
+  "plugins": [
+    {
+      "name": "app-build-workflow",
+      "source": "./",
+      "description": "Build apps from zero in Claude Code with a staged workflow that maximizes ultracode and per-stage effort levels.",
+      "version": "1.0.0"
+    }
+  ]
+}
