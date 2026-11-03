@@ -1,9 +1,9 @@
 ---
-name: app-build-workflow
+name: ultrabuild
 description: Use automatically when the user asks to build a new app, web app, system, platform or software project from scratch (from zero, from a rough plan). Runs a staged Claude Code workflow (requirements, architecture, UI design, build, audit, security, deploy) that maximizes ultracode multi-agent workflows and per-stage effort levels, and auto-invokes companion skills.
 ---
 
-# App Build Workflow
+# Ultrabuild
 
 A staged workflow for building an application **from zero** with Claude Code. It is built around two levers:
 
@@ -31,11 +31,12 @@ The user wants to work hands-off. **Do not wait for the user to name or invoke a
 
 ## Ultracode permission
 
-- If the user invoked this skill (`/app-build-workflow` or "use the app-build-workflow skill"), that counts as permission to run the Workflow tool at every stage marked **ULTRACODE REQUIRED**. Run it directly.
+- If the user invoked this skill (`/ultrabuild` or "use the ultrabuild skill"), that counts as permission to run the Workflow tool at every stage marked **ULTRACODE REQUIRED**. Run it directly.
 - If the skill was triggered automatically, ask once, at the first ultracode stage of the project: "Run all ultracode stages automatically for this project? (yes/no)". A "yes" covers the whole project; do not ask again. On "no", run those stages without the Workflow tool.
 - If the user's prompt already contains the word "ultracode", do not ask.
 - Load the `workflow-authoring` skill before writing a Workflow script.
-- If the Workflow tool is not available in this Claude Code version, approximate the same shape with parallel subagents (Agent tool) and say so once.
+- If the Workflow tool is not available, tell the user once that dynamic workflows may be turned off and can be enabled with `/config` ("Dynamic workflows"); until then, approximate the same shape with parallel subagents (Agent tool).
+- Ultracode and Max effort consume plan usage quickly. This skill is designed for the Claude **Max** or **Ultra** plans. If the user mentions hitting usage limits, suggest running the optional ultracode stages normally and keeping ultracode for Stages 2, 4c and 5 only.
 
 ## Execution labels
 
@@ -76,7 +77,7 @@ A skill cannot change the main session's effort. The user changes it with `/effo
 1. In every stage-gate message (end-of-stage report), add one line: "Next stage: <stage>. Recommended effort: <level>."
 2. When a stage starts (including Stage 1):
    - If the current effort is **visible** in context and **matches**: continue without a reminder.
-   - If it is **visible** and **does not match**: send a one-line reminder ("Effort is <X>; this stage recommends <Y>. Continuing automatically in 5 minutes if there is no reply."). If the environment offers a way to schedule a message back into this session (for example `send_later`), schedule "Continue <stage> of app-build-workflow; no reply about effort." for 5 minutes later and end the turn. If the user replies first, cancel the scheduled message and follow the reply. If the scheduled message arrives, continue with the current effort. If no scheduling tool exists, remind and continue immediately.
+   - If it is **visible** and **does not match**: send a one-line reminder ("Effort is <X>; this stage recommends <Y>. Continuing automatically in 5 minutes if there is no reply."). If the environment offers a way to schedule a message back into this session (for example `send_later`), schedule "Continue <stage> of ultrabuild; no reply about effort." for 5 minutes later and end the turn. If the user replies first, cancel the scheduled message and follow the reply. If the scheduled message arrives, continue with the current effort. If no scheduling tool exists, remind and continue immediately.
    - If the effort is **not visible**: write one line, "Recommended effort for this stage: <level>", and continue without waiting.
 
 ## Skill map (auto-invoked when installed)

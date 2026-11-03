@@ -1,4 +1,4 @@
-# app-build-workflow
+# Ultrabuild
 
 **English** · [Bahasa Indonesia](#bahasa-indonesia)
 
@@ -8,6 +8,8 @@ A Claude Code skill for building applications **from zero**, in stages, using tw
 - **Effort levels**: the right reasoning depth for each stage, from High to Max, for both the main session and every subagent.
 
 It also invokes companion skills automatically (security, minimal backend code, frontend design), so you don't have to name them.
+
+> **Recommended plan: Claude Max or Ultra.** Ultracode runs many agents at high effort and uses plan usage quickly. On Pro, dynamic workflows are off by default and usage limits are reached fast, so Pro is not recommended for this skill.
 
 ## How it works
 
@@ -33,7 +35,7 @@ Every stage ends with a short report and waits for you to say "continue". The re
 - **Normal** stages never ask about ultracode.
 - Small projects (fewer than ~5 modules, no money or sensitive data) downgrade required stages to optional. Financial or regulated projects never downgrade.
 
-Invoking the skill yourself (`/app-build-workflow`) counts as permission for all required ultracode stages. If it triggers automatically, Claude asks once per project.
+Invoking the skill yourself (`/ultrabuild`) counts as permission for all required ultracode stages. If it triggers automatically, Claude asks once per project.
 
 ### Effort rules
 
@@ -84,19 +86,19 @@ Restart Claude Code after installing plugins so their hooks load.
 **Option A: as a plugin**
 
 ```bash
-/plugin marketplace add mochalvi/app-build-workflow
-/plugin install app-build-workflow@app-build-workflow
+/plugin marketplace add mochalvi/ultrabuild
+/plugin install ultrabuild@ultrabuild
 ```
 
 **Option B: as a skill**
 
 ```bash
-npx skills add https://github.com/mochalvi/app-build-workflow --skill app-build-workflow --global
+npx skills add https://github.com/mochalvi/ultrabuild --skill ultrabuild --global
 ```
 
 **Option C: manually**
 
-Copy `skills/app-build-workflow/` into `~/.claude/skills/` (all projects) or `.claude/skills/` inside a project.
+Copy `skills/ultrabuild/` into `~/.claude/skills/` (all projects) or `.claude/skills/` inside a project.
 
 ## Usage
 
@@ -106,13 +108,14 @@ Just describe the app you want to build from scratch, for example:
 
 Or invoke it directly so all required ultracode stages run without the confirmation question:
 
-> /app-build-workflow Build an invoicing web app for small agencies …
+> /ultrabuild Build an invoicing web app for small agencies …
 
 Then answer the clarifying questions and say "continue" at each stage gate.
 
 ## Requirements
 
-- Claude Code with skills support. Ultracode stages need the Workflow tool; without it, the skill approximates them with parallel subagents.
+- **Claude Max or Ultra plan** (recommended). Claude Code is included in all paid plans, but ultracode and Max effort need the larger usage allowance of Max or Ultra.
+- Claude Code with skills support and **dynamic workflows enabled** (check `/config` → "Dynamic workflows"). Without the Workflow tool, the skill approximates ultracode stages with parallel subagents.
 - Effort levels `high`, `xhigh` and `max` must be available for your model.
 - Token use is significantly higher in ultracode stages. That is the trade-off for broader coverage and verified results.
 
@@ -130,6 +133,8 @@ Skill Claude Code untuk membangun aplikasi **dari nol** secara bertahap, dengan 
 - **Effort**: kedalaman berpikir yang tepat untuk tiap tahap, dari High sampai Max, untuk sesi utama maupun setiap sub-agent.
 
 Skill ini juga memanggil skill pendamping secara otomatis (security, kode backend ringkas, desain frontend), jadi Anda tidak perlu menyebutnya satu per satu.
+
+> **Paket yang direkomendasikan: Claude Max atau Ultra.** Ultracode menjalankan banyak agent dengan effort tinggi sehingga kuota cepat terpakai. Di paket Pro, dynamic workflows mati secara default dan kuota cepat habis, jadi Pro tidak direkomendasikan untuk skill ini.
 
 ## Cara kerja
 
@@ -155,7 +160,7 @@ Setiap tahap diakhiri laporan singkat dan menunggu Anda bilang "lanjut". Laporan
 - Tahap **normal** tidak pernah bertanya soal ultracode.
 - Proyek kecil (kurang dari ~5 modul, tanpa uang atau data sensitif) menurunkan tahap wajib menjadi opsional. Proyek finansial atau yang diatur regulasi tidak pernah turun.
 
-Memanggil skill sendiri (`/app-build-workflow`) dianggap sebagai izin untuk semua tahap ultracode wajib. Kalau skill terpicu otomatis, Claude akan bertanya sekali per proyek.
+Memanggil skill sendiri (`/ultrabuild`) dianggap sebagai izin untuk semua tahap ultracode wajib. Kalau skill terpicu otomatis, Claude akan bertanya sekali per proyek.
 
 ### Aturan effort
 
@@ -184,19 +189,19 @@ Perintah instalasinya sama dengan bagian English di atas. Restart Claude Code se
 **Opsi A: sebagai plugin**
 
 ```bash
-/plugin marketplace add mochalvi/app-build-workflow
-/plugin install app-build-workflow@app-build-workflow
+/plugin marketplace add mochalvi/ultrabuild
+/plugin install ultrabuild@ultrabuild
 ```
 
 **Opsi B: sebagai skill**
 
 ```bash
-npx skills add https://github.com/mochalvi/app-build-workflow --skill app-build-workflow --global
+npx skills add https://github.com/mochalvi/ultrabuild --skill ultrabuild --global
 ```
 
 **Opsi C: manual**
 
-Salin folder `skills/app-build-workflow/` ke `~/.claude/skills/` (semua project) atau `.claude/skills/` di dalam project.
+Salin folder `skills/ultrabuild/` ke `~/.claude/skills/` (semua project) atau `.claude/skills/` di dalam project.
 
 ## Cara pakai
 
@@ -206,13 +211,14 @@ Cukup jelaskan aplikasi yang ingin dibangun dari nol, misalnya:
 
 Atau panggil langsung supaya semua tahap ultracode wajib berjalan tanpa pertanyaan konfirmasi:
 
-> /app-build-workflow Buatkan web app invoice untuk agensi kecil …
+> /ultrabuild Buatkan web app invoice untuk agensi kecil …
 
 Setelah itu jawab pertanyaan klarifikasi, lalu bilang "lanjut" di setiap akhir tahap.
 
 ## Kebutuhan
 
-- Claude Code yang mendukung skill. Tahap ultracode butuh Workflow tool; tanpa itu, skill akan mendekatinya dengan sub-agent paralel.
+- **Paket Claude Max atau Ultra** (direkomendasikan). Claude Code tersedia di semua paket berbayar, tetapi ultracode dan effort Max membutuhkan kuota besar dari Max atau Ultra.
+- Claude Code yang mendukung skill dan **dynamic workflows aktif** (cek `/config` → "Dynamic workflows"). Tanpa Workflow tool, skill akan mendekati tahap ultracode dengan sub-agent paralel.
 - Level effort `high`, `xhigh`, dan `max` harus tersedia untuk model yang Anda pakai.
 - Pemakaian token jauh lebih besar di tahap ultracode. Itu konsekuensi dari cakupan yang lebih luas dan hasil yang terverifikasi.
 
